@@ -9,18 +9,18 @@ import "./App.css";
 
 function App() {
   return (
-    <Router>
-      <div className="App">
-        <PostContextProvider>
+    <PostContextProvider>
+      <Router>
+        <div className="App">
           <h3>ContextAPI - useReducer</h3>
           <Switch>
             <Route exact path="/" component={PostList} />
             <Route exact path="/edit/:id" component={EditPostForm} />
             <Route exact path="/detail/:id" component={PostDetail} />
           </Switch>
-        </PostContextProvider>
-      </div>
-    </Router>
+        </div>
+      </Router>
+    </PostContextProvider>
   );
 }
 

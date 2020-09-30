@@ -2,22 +2,19 @@ import React, { createContext, useReducer, useEffect } from "react";
 import { PostReducer } from "../reducers/PostReducer";
 
 const initialState = {
-  post: [],
+  post: JSON.parse(localStorage.getItem("post")) || [],
 };
 
 export const PostContext = createContext(initialState);
 
 export const PostContextProvider = (props) => {
-  const [state, dispatch] = useReducer(PostReducer, initialState, () => {
-    const localData = localStorage.getItem("posts");
-
-    return localData ? JSON.parse(localData) : [];
-  });
+  const [state, dispatch] = useReducer(PostReducer, initialState);
 
   useEffect(() => {
-    localStorage.setItem("posts", JSON.stringify(state));
+    localStorage.setItem("post", JSON.stringify(state.post));
   }, [state]);
 
+  console.log(state);
   function addPost(post) {
     dispatch({
       type: "ADD_POST",
